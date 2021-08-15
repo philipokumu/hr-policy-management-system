@@ -20,12 +20,12 @@
                     <div class="mt-6 flow-root">
                         <button
                             class="float-right bg-indigo-600 text-white text-sm font-bold tracking-wide rounded-full px-5 py-2" type="submit">
+                            @if($unansweredQuestionsCount != $assessment->total_questions)
                             Next
+                            @else
+                            Submit
+                            @endif
                         </button>
-                        {{-- <button @click="showResults" v-show="selectedAnswer != '' && idx == count - 1"
-                            class="float-right bg-indigo-600 text-white text-sm font-bold tracking-wide rounded-full px-5 py-2">
-                            Finish
-                        </button> --}}
                     </div>
                 </div>
             </form>

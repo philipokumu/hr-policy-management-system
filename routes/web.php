@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\AssessmentQuestionAndAnswers;
 use App\Http\Livewire\AssessmentStat;
 use App\Http\Livewire\CreateUser;
 use App\Http\Livewire\ShowAssessment;
@@ -31,6 +32,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     /** Admin management */
     Route::get('/users/{user}/assessments', AssessmentStat::class)->name('user.assessment.stat');
+    // Route::get('/users/{user}/assessments/{assessment}', AssessmentQuestionAndAnswers::class)->name('user.assessment.single.stat');
     Route::get('/users/create', CreateUser::class)->name('users.create');
 });
 

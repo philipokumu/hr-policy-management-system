@@ -13,7 +13,7 @@
             </div>
             @if(request()->user()->role == 'admin')
             <div class="m-4">
-              <a href="#{{--route('users.export')--}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">
+              <a href="#" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">
                   Assessment answers
               </a>
             @endif
