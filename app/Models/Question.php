@@ -16,4 +16,9 @@ class Question extends Model
         return $this->hasOne(Answer::class)->where('isCorrect','yes');
     }
 
+    public function assessmentQuestions()
+    {
+        return $this->hasMany(AssessmentQuestion::class);
+    }
+
 }

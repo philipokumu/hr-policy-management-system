@@ -3,36 +3,68 @@
         <div class="flex md:justify-between flex-col md:flex-row">
             <div class="flex items-center">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                  @if ($isAdminStats == 'yes' || request()->user()->role == 'normal')
                     {{ __('Your performance') }}
+                    @else
+                    
+                    {{$user->name}}{{ __("'s recent performance") }}
+                  @endif
                 </h2>
             </div>
+            @if(request()->user()->role == 'admin')
+            <div class="m-4">
+              <a href="#{{--route('users.export')--}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">
+                  Assessment answers
+              </a>
+            @endif
+          </div>
+            @if ($isAdminStats == 'yes' || request()->user()->role == 'normal')
             <div class="flex flex-col md:flex-row">
-                <a href="{{route('assessment.create')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-48">
-                    {{$assessmentCount < 1 ? 'Start Assessment' : 'Retake Assessment'}}
-                </a>
+              <a href="{{route('assessment.create')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-48">
+                  {{$assessmentCount < 1 ? 'Start Assessment' : 'Retake Assessment'}}
+              </a>
             </div>
+            @endif
         </div>
     </x-slot>
     @if ($assessmentCount > 0)
     <div class="py-4">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-              <div class="bg-white p-6 rounded shadow mt-4">
+              <div class="bg-white p-6 rounded shadow mt-4 flex justify-between">
+                <div class="mr-8">
                   <h3 class="mb-3 text-xl">Aggregate performance</h3>
                   <h3 class="text-xl {{ $aggregatePerformance < 51 ? 'text-red-500' : '' }}">{{$aggregatePerformance}}%</h3>
                   <div>
-                      @if ($aggregateAnsweringTime >= 1 && $aggregateAnsweringTime <= 10)
-                      <span class="inline-block px-2 text-sm text-white bg-red-400 rounded ">{{$aggregateAnsweringTime}} secs</span>
-                      @endif
-                      @if ($aggregateAnsweringTime >= 11 && $aggregateAnsweringTime <= 29)
-                      <span class="inline-block px-2 text-sm text-white bg-green-300 rounded ">{{$aggregateAnsweringTime}} secs</span>
-                      @endif
-                      @if ($aggregateAnsweringTime >= 30  && $aggregateAnsweringTime <= 40)
-                      <span class="inline-block px-2 text-sm text-white bg-red-600 rounded ">{{$aggregateAnsweringTime}} secs</span>
-                      @endif
-                      <span>Avg answer speed</span>
+                    @if ($aggregateAnsweringTime >= 1 && $aggregateAnsweringTime <= 10)
+                    <span class="inline-block px-2 text-sm text-white bg-red-400 rounded ">{{$aggregateAnsweringTime}} secs</span>
+                    @endif
+                    @if ($aggregateAnsweringTime >= 11 && $aggregateAnsweringTime <= 29)
+                    <span class="inline-block px-2 text-sm text-white bg-green-300 rounded ">{{$aggregateAnsweringTime}} secs</span>
+                    @endif
+                    @if ($aggregateAnsweringTime >= 30  && $aggregateAnsweringTime <= 40)
+                    <span class="inline-block px-2 text-sm text-white bg-red-600 rounded ">{{$aggregateAnsweringTime}} secs</span>
+                    @endif
+                    <span>Avg answer speed</span>
                   </div>
+                </div>
+
+                @if (auth()->user()->role == 'admin')
+                <div>
+                  <h3 class="mb-3 text-xl">Attempts</h3>
+                  <h3 class="text-xl">{{$attempts}}</h3>
+                  {{-- <div> --}}
+                    {{-- <span class="inline-block px-2 text-sm text-white bg-red-600 rounded" :class="{ 'bg-green-500': {{$attempts}} >= 5 }">{{$attempts}} %</span> --}}
+                    {{-- <span class="inline-block px-2 text-sm text-white bg-red-600 rounded" :class="{ 'bg-green-500': {{$attempts}} >= 5 }">{{$attempts}} %</span> --}}
+                    {{-- <span>Avg answer speed</span> --}}
+                  {{-- </div> --}}
+                </div>
+                @endif
               </div>
+
+              
+
+
 
 
               <div class="bg-white p-4 rounded shadow mt-4">
@@ -47,9 +79,10 @@
               </div>
 
 
+              @if ($isAdminStats == 'yes' || request()->user()->role == 'normal')
               <div class="m-3">
                   <h3 class="mt-6 text-xl">The policy documents</h3>
-              <h5 class="mt-4 text-base">Read the following company documents before retaking the assessment (Click to open)</h5>
+                  <h5 class="mt-4 text-base">Read the following company documents before retaking the assessment (Click to open)</h5>
               </div>
               <div class="flex flex-col mt-6">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -84,6 +117,7 @@
                   </div>
                 </div>
               </div>
+              @endif
           </div>
       </div>
   </div>

@@ -19,6 +19,7 @@ class CreateAssessmentQuestionsTable extends Migration
             $table->foreignId('question_id')->constrained();
             $table->foreignId('answer_id')->nullable()->constrained();
             $table->integer('time_taken')->nullable();
+            $table->string('isCompleted')->default('no');
             $table->timestamps();
         });
     }

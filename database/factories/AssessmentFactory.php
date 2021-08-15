@@ -23,7 +23,7 @@ class AssessmentFactory extends Factory
     {
         return [
             'user_id'=>1,
-            'total_questions'=>10,
+            'total_questions'=>3,
         ];
     }
 }

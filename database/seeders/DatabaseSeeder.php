@@ -22,18 +22,25 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $user = User::factory()->create(['email'=>'user@example.com']);
+        $admin = User::factory()->create(['email'=>'admin@example.com','role'=>'admin']);
 
         $topic = Topic::factory()->create();
         $topicDocument = TopicDocument::factory(2)->create(['topic_id'=>$topic->id]);
 
-        $assessment = Assessment::factory()->create(['user_id'=>$user->id]);
+        $assessment = Assessment::factory()->create(['user_id'=>$user->id, 'isComplete'=>'yes']);
 
         $question1 = Question::factory()->create(['topic_id'=>$topic->id]);
         $question2 = Question::factory()->create(['topic_id'=>$topic->id]);
         $question3 = Question::factory()->create(['topic_id'=>$topic->id]);
         $answer1 = Answer::factory()->create(['question_id'=>$question1->id,'isCorrect'=>'yes']);
-        $answer2 = Answer::factory()->create(['question_id'=>$question2->id,'isCorrect'=>'no']);
-        $answer3 = Answer::factory()->create(['question_id'=>$question3->id,'isCorrect'=>'no']);
+        $answer2 = Answer::factory()->create(['question_id'=>$question1->id,'isCorrect'=>'no']);
+        $answer3 = Answer::factory()->create(['question_id'=>$question1->id,'isCorrect'=>'no']);
+        $answer4 = Answer::factory()->create(['question_id'=>$question2->id,'isCorrect'=>'yes']);
+        $answer5 = Answer::factory()->create(['question_id'=>$question2->id,'isCorrect'=>'no']);
+        $answer6 = Answer::factory()->create(['question_id'=>$question2->id,'isCorrect'=>'no']);
+        $answer7 = Answer::factory()->create(['question_id'=>$question3->id,'isCorrect'=>'yes']);
+        $answer8 = Answer::factory()->create(['question_id'=>$question3->id,'isCorrect'=>'no']);
+        $answer9 = Answer::factory()->create(['question_id'=>$question3->id,'isCorrect'=>'no']);
         $assessmentQuestion1 = AssessmentQuestion::factory()->create([
             'question_id'=>$question1->id,
             'assessment_id'=>$assessment->id,

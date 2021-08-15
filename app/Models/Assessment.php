@@ -15,4 +15,9 @@ class Assessment extends Model
     {
         return $this->hasMany(AssessmentStat::class);
     }
+
+    public function assessmentQuestions()
+    {
+        return $this->hasMany(AssessmentQuestion::class);
+    }
 }

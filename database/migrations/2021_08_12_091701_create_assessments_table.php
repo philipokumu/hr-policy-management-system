@@ -16,7 +16,8 @@ class CreateAssessmentsTable extends Migration
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->integer('total_questions');
+            $table->integer('total_questions')->nullable();
+            $table->string('isComplete')->default('no');
             $table->timestamps();
         });
     }

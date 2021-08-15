@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\AssessmentStat;
+use App\Http\Livewire\CreateUser;
+use App\Http\Livewire\ShowAssessment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(route('login'));
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -22,8 +25,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/assessments/create', [App\Http\Controllers\AssessmentController::class, 'create']);
-    Route::get('/assessments/create', [App\Http\Controllers\AssessmentController::class, 'create'])->name('assessment.create');
+    Route::get('/assessments', ShowAssessment::class)->name('assessment.show');
+    Route::get('/assessments/intro', [App\Http\Controllers\AssessmentController::class, 'create'])->name('assessment.create');
     Route::patch('/assessments/{assessment}/assessmentQuestions/{assessmentQuestion}', [App\Http\Controllers\AssessmentQuestionController::class, 'update']);
+
+    /** Admin management */
+    Route::get('/users/{user}/assessments', AssessmentStat::class)->name('user.assessment.stat');
+    Route::get('/users/create', CreateUser::class)->name('users.create');
 });
 

@@ -12,7 +12,8 @@
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
-        "livewire/livewire": "^2.5"
+        "livewire/livewire": "^2.5",
+        "rappasoft/laravel-livewire-tables": "^1.12"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
