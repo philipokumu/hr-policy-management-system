@@ -13,7 +13,13 @@ class ShowAssessment extends Component
 
     public function mount()
     {
-        $this->assessment = Assessment::where(['user_id'=>request()->user()->id,'isComplete'=>'no'])->first();
+        $assessment = Assessment::where(['user_id'=>request()->user()->id,'isComplete'=>'no'])->first();
+         if ($assessment) {
+             $this->assessment = $assessment;
+         }
+         else {
+             redirect(route('dashboard'));
+         }
     }
 
     public function render()

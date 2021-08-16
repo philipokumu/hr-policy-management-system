@@ -48,7 +48,7 @@ class AssessmentQuestion extends Component
             $this->currentQuestion = Question::find($currentAssessmentQuestion->question_id);
             $this->allocatedTime = $this->currentQuestion->allocated_time;
             $this->topic = Topic::find($this->currentQuestion->topic_id);
-            $this->currentAnswers = Answer::where('question_id',$this->currentQuestion->id)->get();
+            $this->currentAnswers = Answer::where('question_id',$this->currentQuestion->id)->inRandomOrder()->get();
         }
 
         else {
@@ -59,7 +59,7 @@ class AssessmentQuestion extends Component
 
             foreach( $assessmentStats as $stat) {
 
-                $topicPerformance = $stat->topic_employee_score/$stat->topic_total_questions * 100; 
+                $topicPerformance = round(($stat->topic_employee_score/$stat->topic_total_questions * 100),1); 
 
                 $should_recap_topic = $topicPerformance > 50 ? 'no' : 'yes';
 

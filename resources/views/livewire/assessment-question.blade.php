@@ -6,7 +6,6 @@
             </h1>
             <input type="text" hidden aria-hidden="true" disabled name="time_taken" wire:model="time_taken" x-model="time_taken">
             <div class="bg-white p-12 rounded-lg shadow-lg w-full mt-8">
-                <form>
                     <p class="text-2xl font-bold">
                         {{$currentQuestion->question_text}}
                     </p>

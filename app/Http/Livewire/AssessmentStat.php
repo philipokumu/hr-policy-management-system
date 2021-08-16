@@ -15,6 +15,7 @@ class AssessmentStat extends Component
     public $attempts;
     public $topicIds;
     public $isAdminStats;
+    public $assessment;
     public $assessmentCount;
     public $assessmentStats;
     public $aggregatePerformance;
@@ -27,6 +28,7 @@ class AssessmentStat extends Component
         if (auth()->user()->role !='admin') {
 
             $assessment = Assessment::where(['user_id'=>request()->user()->id,'isComplete'=>'yes'])->orderby('created_at', 'desc')->first();
+            
         }
         else {
 
@@ -42,14 +44,15 @@ class AssessmentStat extends Component
         $this->assessmentCount = $assessment ? 1 : 0;
         
         if ($assessment) {
+            $this->assessment = $assessment;
             $assessmentStats = ModelsAssessmentStat::where([
             'assessment_id'=> $assessment->id,
             ])->get();
 
             
-            $this->aggregatePerformance = $assessmentStats->avg('topic_performance');
+            $this->aggregatePerformance = round($assessmentStats->avg('topic_performance'),1);
             
-            $this->topicIds = $assessmentStats->pluck('topic_id')->toArray();
+            $this->topicIds = ModelsAssessmentStat::where(['assessment_id'=> $assessment->id,'should_recap_topic'=>'yes'])->pluck('topic_id');
     
             $this->assessmentStats = $assessmentStats;
     

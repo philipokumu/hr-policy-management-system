@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Livewire\AllTopics;
+use App\Http\Livewire\AllQuestions;
 use App\Http\Livewire\AssessmentQuestionAndAnswers;
 use App\Http\Livewire\AssessmentStat;
 use App\Http\Livewire\CreateUser;
@@ -31,8 +33,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::patch('/assessments/{assessment}/assessmentQuestions/{assessmentQuestion}', [App\Http\Controllers\AssessmentQuestionController::class, 'update']);
 
     /** Admin management */
+    Route::middleware(['isAdmin'])->group(function () {
     Route::get('/users/{user}/assessments', AssessmentStat::class)->name('user.assessment.stat');
-    // Route::get('/users/{user}/assessments/{assessment}', AssessmentQuestionAndAnswers::class)->name('user.assessment.single.stat');
+    Route::get('/users/{user}/assessments/{assessment}', AssessmentQuestionAndAnswers::class)->name('user.assessment.single.stat');
     Route::get('/users/create', CreateUser::class)->name('users.create');
+    Route::get('/topics', AllTopics::class)->name('topics.list');
+    Route::get('/questions', AllQuestions::class)->name('questions.list');
+    });
 });
 

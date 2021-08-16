@@ -44,6 +44,28 @@
                     <span class="mx-2 text-gray-300">New Staff Member</span>
                 </a>
             </li>
+            <li class="px-2 py-3 mt-2 hover:bg-gray-900 rounded {{ request()->routeIs('topics.list') ? 'bg-gray-500' : '' }}">
+                <a href="{{route('topics.list')}}" class="flex items-center">
+                    <svg class="w-6 text-gray-500" fill="none" stroke-linecap="round"
+                         stroke-linejoin="round"
+                         stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path
+                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                    </svg>
+                    <span class="mx-2 text-gray-300">Topic List</span>
+                </a>
+            </li>
+            <li class="px-2 py-3 mt-2 hover:bg-gray-900 rounded {{ request()->routeIs('questions.list') ? 'bg-gray-500' : '' }}">
+                <a href="{{route('questions.list')}}" class="flex items-center">
+                    <svg class="w-6 text-gray-500" fill="none" stroke-linecap="round"
+                         stroke-linejoin="round"
+                         stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                        <path
+                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                    </svg>
+                    <span class="mx-2 text-gray-300">Question List</span>
+                </a>
+            </li>
         </ul>
 </aside>
 @endif

@@ -12,10 +12,10 @@ class SinglePolicyDocument extends Component
     public $topic;
     public $documents;
 
-    public function mount()
+    public function mount($topicId)
     {
-        $this->topic = Topic::findOrFail($this->topicId);
-        $this->documents = TopicDocument::where('topic_id',$this->topicId)->get();
+        $this->topic = Topic::findOrFail($topicId);
+        $this->documents = TopicDocument::where('topic_id',$topicId)->get();
     }
 
     public function render()

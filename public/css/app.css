@@ -1237,6 +1237,9 @@ select {
 .-mt-px {
 	margin-top: -1px;
 }
+.mr-4 {
+	margin-right: 1rem;
+}
 .mr-8 {
 	margin-right: 2rem;
 }
@@ -1245,9 +1248,6 @@ select {
 }
 .mb-0 {
 	margin-bottom: 0px;
-}
-.mr-4 {
-	margin-right: 1rem;
 }
 .block {
 	display: block;
@@ -1699,6 +1699,14 @@ select {
 .bg-red-50 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(254, 242, 242, var(--tw-bg-opacity));
+}
+.bg-green-400 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(52, 211, 153, var(--tw-bg-opacity));
+}
+.bg-green-200 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(167, 243, 208, var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;

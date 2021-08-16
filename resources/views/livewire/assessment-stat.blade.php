@@ -11,13 +11,13 @@
                   @endif
                 </h2>
             </div>
-            @if(request()->user()->role == 'admin')
+            @if(request()->user()->role == 'admin' || $assessmentCount > 0)
             <div class="m-4">
-              <a href="#" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">
+              <a href="{{'/users/'.$user->id.'/assessments/'.$assessment->id}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4">
                   Assessment answers
               </a>
+            </div>
             @endif
-          </div>
             @if ($isAdminStats == 'yes' || request()->user()->role == 'normal')
             <div class="flex flex-col md:flex-row">
               <a href="{{route('assessment.create')}}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-48">
@@ -34,9 +34,14 @@
               <div class="bg-white p-6 rounded shadow mt-4 flex justify-between">
                 <div class="mr-8">
                   <h3 class="mb-3 text-xl">Aggregate performance</h3>
-                  <h3 class="text-xl {{ $aggregatePerformance < 51 ? 'text-red-500' : '' }}">{{$aggregatePerformance}}%</h3>
+                  {{-- <h3 class="text-xl {{ $aggregatePerformance < 51 ? 'text-red-500' : '' }}">{{$aggregatePerformance}}%</h3> --}}
+                  @if ($aggregatePerformance < 51)
+                  <h3 class="text-xl text-red-500">{{$aggregatePerformance}}%</h3>
+                  @else
+                  <h3 class="text-xl text-green-500">{{$aggregatePerformance}}%</h3>
+                  @endif
                   <div>
-                    @if ($aggregateAnsweringTime >= 1 && $aggregateAnsweringTime <= 10)
+                    @if ($aggregateAnsweringTime >= 0 && $aggregateAnsweringTime <= 10)
                     <span class="inline-block px-2 text-sm text-white bg-red-400 rounded ">{{$aggregateAnsweringTime}} secs</span>
                     @endif
                     @if ($aggregateAnsweringTime >= 11 && $aggregateAnsweringTime <= 29)

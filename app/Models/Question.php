@@ -21,4 +21,14 @@ class Question extends Model
         return $this->hasMany(AssessmentQuestion::class);
     }
 
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
+    public function topic()
+    {
+        return $this->belongsTo(Topic::class);
+    }
+
 }
