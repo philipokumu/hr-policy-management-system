@@ -50,7 +50,7 @@ class AssessmentStat extends Component
             ])->get();
 
             
-            $this->aggregatePerformance = round($assessmentStats->avg('topic_performance'),1);
+            $this->aggregatePerformance = round($assessmentStats->avg('topic_performance'));
             
             $this->topicIds = ModelsAssessmentStat::where(['assessment_id'=> $assessment->id,'should_recap_topic'=>'yes'])->pluck('topic_id');
     

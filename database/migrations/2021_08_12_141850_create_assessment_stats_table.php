@@ -19,7 +19,7 @@ class CreateAssessmentStatsTable extends Migration
             $table->foreignId('assessment_id')->constrained();
             $table->integer('topic_employee_score');
             $table->integer('topic_total_questions');
-            $table->double('topic_performance',3,1)->nullable();
+            $table->double('topic_performance')->nullable();
             $table->string('should_recap_topic')->nullable();
             $table->timestamps();
         });

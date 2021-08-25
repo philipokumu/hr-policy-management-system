@@ -9,7 +9,7 @@
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
-    {{ substr($row->question_text,10) }}
+    {{ substr($row->question_text,0, 30) }}...
 </x-livewire-tables::table.cell>
 
 <x-livewire-tables::table.cell>
